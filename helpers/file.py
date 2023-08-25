@@ -10,14 +10,16 @@ import shutil
 import validators
 
 
-def get_urls():
+def get_urls(list_file_path=''):
     """ Returns a list of valid urls from the urls.txt file
 
     Returns:
         list
     """
+    if not list_file_path:
+        list_file_path = os.path.dirname(__file__) + '/../urls.txt'
     url_list = []
-    with open(os.path.dirname(__file__) + '/../urls.txt', 'r') as file_handler:
+    with open(list_file_path, 'r') as file_handler:
         for url in file_handler.readlines():
             url = url.rstrip('\n')
             if validators.url(url):
